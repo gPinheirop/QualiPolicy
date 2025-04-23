@@ -5,6 +5,8 @@
  * @format
  */
 
+import './global.css';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';

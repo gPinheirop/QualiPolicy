@@ -1,4 +1,5 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const {withNativeWind} = require('nativewind/metro');
 
 const fs = require('fs');
 const path = require('path');
@@ -17,8 +18,7 @@ const rnwPath = fs.realpathSync(
  * @type {import('metro-config').MetroConfig}
  */
 
-const config = {
-  //
+const config = mergeConfig(getDefaultConfig(__dirname), {
   resolver: {
     blockList: exclusionList([
       // This stops "npx @react-native-community/cli run-windows" from causing the metro server to crash if its already running
@@ -40,6 +40,6 @@ const config = {
       },
     }),
   },
-};
+});
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = withNativeWind(config, {input: './global.css'});
