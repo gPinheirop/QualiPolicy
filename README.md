@@ -1,4 +1,6 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# QualiPolicy
+
+A desktop application that improves policy management for brokerage and insurance companies
 
 # Getting Started
 
@@ -58,29 +60,98 @@ npm run ios
 yarn ios
 ```
 
+### Windows
+For windows run 
+
+```sh
+# Using npm
+npm run windows
+
+# OR using Yarn
+yarn windows
+```
+
 If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
+# Requirements
 
-Now that you have successfully run the app, let's make changes!
+## Functional Requirements
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- [ ] CRUD policies
+- [ ] Search for policies by CPF or CNPJ
+- [ ] Filter policies by time period and companies
+- [ ] Display total for: Liquid prize; Brute prize; IOF and commission
+- [ ] Export data as Excel
+- [ ] Display data in an interactive dashboard
+- [ ] Import data as .csv
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Non Functional Requirements
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- [ ] Has windows OS support
+- [ ] Persist user data
+- [ ] Intuitive design
+- [ ] Quick response time
 
-## Congratulations! :tada:
+# Data Modeling
 
-You've successfully run and modified your React Native App. :partying_face:
+## User Diagram
+![image](https://github.com/user-attachments/assets/dc6d84c1-da1e-451c-8e4b-a0f724c8b7d2)
 
-### Now what?
+## ER Diagram
+```mermaid
+erDiagram
+    CLIENT ||--o{ ADDRESS : have
+    CLIENT ||--o{ POLICY : hires
+    POLICY ||--o{ VEHICLE : have
+    POLICY }|--|| INSURANCE_COMPANY : emits
+    USER }|--|| CLIENT : manages
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+    CLIENT {
+        string full_name
+        string CPF_or_CNPJ
+        string phone_number
+    }
+
+    ADDRESS {
+        string street
+        string number
+        string complement
+        string neighborhood
+        string CEP
+        string city
+        string state
+    }
+
+    POLICY {
+        number liquid_prize
+        number commission
+        number IOF
+        string installment
+        string payment_type
+        string number
+    }
+
+    VEHICLE {
+        string type
+        string model
+        string chassisNumber
+        string carLicensePlate
+        string franchiseType
+    }
+
+    INSURANCE_COMPANY {
+        string name
+        string link
+    }
+
+    USER {
+        string email
+        string password
+        string name
+    }
+```
 
 # Troubleshooting
 
