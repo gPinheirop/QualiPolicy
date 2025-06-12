@@ -4,6 +4,7 @@ import FormInput from './FormInput';
 import {useState} from 'react';
 import {Policy} from '../types/policy';
 import {Vehicle} from '../types/vehicle';
+import {useReportStore} from '../report.store';
 
 interface Props {
   isModalOpen: boolean;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
+  const {updatePolicies} = useReportStore();
+
   const [inputPolicy, setInputPolicy] = useState<Policy & Vehicle>({
     id: '',
     dealDate: '',
@@ -74,7 +77,7 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
     },
     {
       label: 'Email',
-      placeholder: '(11) 91111-abc@email.com',
+      placeholder: 'abc@email.com',
       key: 'email',
     },
     {
@@ -91,6 +94,11 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
       label: 'IOF',
       placeholder: '10%',
       key: 'IOF',
+    },
+    {
+      label: 'Comissão',
+      placeholder: '12',
+      key: 'commissionPercentage',
     },
     {
       label: 'Prémio Total',
@@ -144,9 +152,21 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
     },
   ];
 
+  function validatePolicy(policy: Policy) {
+    const formtatedPolicy = policy;
+    const [day, month, year] = formtatedPolicy.dealDate.split('/');
+
+    formtatedPolicy.dealDate = new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day),
+    );
+    updatePolicies(formtatedPolicy);
+  }
+
   return (
     <Popup isOpen={isModalOpen} style={{width: '60%'}}>
-      <View className="border border-red-950 rounded-xl items-center bg-white">
+      <View className="border border-red-950 rounded-xl items-center bg-white py-2">
         <Text className="color-black text-4xl py-2">Adicionar Apolice</Text>
         <View className="flex flex-row flex-wrap gap-4 items-center justify-center p-4">
           {inputs.map(input => (
@@ -161,11 +181,21 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
             />
           ))}
         </View>
-        <TouchableOpacity
-          onPress={() => setIsModalOpen(false)}
-          className="bg-black p-8">
-          <Text className="color-white">fechar</Text>
-        </TouchableOpacity>
+        <View className="flex flex-row w-1/2 justify-around">
+          <TouchableOpacity
+            onPress={() => setIsModalOpen(false)}
+            className="bg-gray-500 px-8 py-4 rounded-2xl flex items-center justify-center">
+            <Text className="color-white">Fechar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              validatePolicy(inputPolicy);
+              setIsModalOpen(false);
+            }}
+            className="bg-red-500 px-8 py-4 rounded-2xl flex items-center justify-center">
+            <Text className="color-white">Salvar</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </Popup>
   );
