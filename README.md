@@ -1,3 +1,7 @@
+# QualiPolicy
+
+A desktop application that improves policy management for brokerage and insurance companies
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
@@ -62,25 +66,30 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
+# Requirements
 
-Now that you have successfully run the app, let's make changes!
+## Functional Requirements
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- [ ] CRUD policies
+- [ ] Search for policies by CPF or CNPJ
+- [ ] Filter policies by time period and companies
+- [ ] Display total for: Liquid prize; Brute prize; IOF and commission
+- [ ] Export data as Excel
+- [ ] Display data in an interactive dashboard
+- [ ] Import data as .csv
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Non Functional Requirements
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- [ ] Has windows OS support
+- [ ] Persist user data
+- [ ] Intuitive design
+- [ ] Quick response time
 
-## Congratulations! :tada:
+# Data Modeling
 
-You've successfully run and modified your React Native App. :partying_face:
+## User Diagram
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## Class Diagram
 
 # Troubleshooting
 
