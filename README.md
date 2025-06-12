@@ -2,8 +2,6 @@
 
 A desktop application that improves policy management for brokerage and insurance companies
 
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
@@ -62,6 +60,17 @@ npm run ios
 yarn ios
 ```
 
+### Windows
+For windows run
+
+```sh
+# Using npm
+npm run windows
+
+# OR using Yarn
+yarn windows
+```
+
 If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
@@ -88,8 +97,61 @@ This is one way to run your app — you can also build it directly from Android 
 # Data Modeling
 
 ## User Diagram
+![image](https://github.com/user-attachments/assets/dc6d84c1-da1e-451c-8e4b-a0f724c8b7d2)
 
-## Class Diagram
+## ER Diagram
+```mermaid
+erDiagram
+    CLIENT ||--o{ ADDRESS : have
+    CLIENT ||--o{ POLICY : hires
+    POLICY ||--o{ VEHICLE : have
+    POLICY }|--|| INSURANCE_COMPANY : emits
+    USER }|--|| CLIENT : manages
+
+    CLIENT {
+        string full_name
+        string CPF_or_CNPJ
+        string phone_number
+    }
+
+    ADDRESS {
+        string street
+        string number
+        string complement
+        string neighborhood
+        string CEP
+        string city
+        string state
+    }
+
+    POLICY {
+        number liquid_prize
+        number commission
+        number IOF
+        string installment
+        string payment_type
+        string number
+    }
+
+    VEHICLE {
+        string type
+        string model
+        string chassisNumber
+        string carLicensePlate
+        string franchiseType
+    }
+
+    INSURANCE_COMPANY {
+        string name
+        string link
+    }
+
+    USER {
+        string email
+        string password
+        string name
+    }
+```
 
 # Troubleshooting
 
