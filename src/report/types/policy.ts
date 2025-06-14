@@ -2,7 +2,7 @@ import {Vehicle} from './vehicle';
 
 export interface Policy {
   id: string;
-  dealDate: Date | null;
+  dealDate: Date;
   companyName: string;
   policyNumber: string;
   name: string;

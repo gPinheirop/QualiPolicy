@@ -21,7 +21,7 @@ const ListItem = ({index, policy}: Props) => {
       <Text className="w-[9%] text-black text-center">
         {policy.phoneNumber}
       </Text>
-      <Text className="w-[9%] text-black text-center">{policy.company}</Text>
+      <Text className="w-[9%] text-black text-center">{policy.companyName}</Text>
       <Text className="w-[9%] text-black text-center">{policy.segment}</Text>
       <Text className="w-[9%] text-black text-center">
         {policy.liquidPrize}

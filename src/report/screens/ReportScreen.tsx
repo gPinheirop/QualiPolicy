@@ -1,9 +1,8 @@
-import {FlatList, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 
 import {useReportStore} from '../report.store';
 
 import {useState} from 'react';
-import {Popup} from 'react-native-windows';
 import {
   EmptyListItem,
   Header,
@@ -35,6 +34,13 @@ const ReportScreen = () => {
           )}
           ListEmptyComponent={<EmptyListItem openModal={setIsModalOpen} />}
         />
+        {policies.length > 0 && (
+          <TouchableOpacity onPress={() => setIsModalOpen(true)}>
+            <Text className="text-black underline text-xl">
+              Adicionar Apólice
+            </Text>
+          </TouchableOpacity>
+        )}
         <PolicyForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </View>
     </View>
