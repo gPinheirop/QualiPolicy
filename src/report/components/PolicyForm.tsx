@@ -5,7 +5,12 @@ import {useState} from 'react';
 import {Policy} from '../types/policy';
 import {Vehicle} from '../types/vehicle';
 import {useReportStore} from '../report.store';
-import {createDateByString, formatInputDate} from '../utils';
+import {
+  createDateByString,
+  formatInputDate,
+  formatInputIdentifier,
+  formatInputPhoneNumber,
+} from '../utils';
 
 interface Props {
   isModalOpen: boolean;
@@ -69,6 +74,7 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
     {
       label: 'CPF/CNPJ',
       placeholder: '111.111.111-11',
+      formatter: formatInputIdentifier,
       key: 'identifier',
     },
     {
@@ -79,6 +85,7 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
     {
       label: 'Telefone',
       placeholder: '(11) 91111-1111',
+      formatter: formatInputPhoneNumber,
       key: 'phoneNumber',
     },
     {
