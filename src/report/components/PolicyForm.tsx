@@ -166,9 +166,44 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
   ];
 
   function validatePolicy(policy: Policy) {
-    const formtatedPolicy = policy;
-    formtatedPolicy.dealDate = createDateByString(formtatedPolicy.dealDate);
-    updatePolicies(formtatedPolicy);
+    for (const key of Object.keys(policy)) {
+      switch (key) {
+        case 'companyName':
+        case 'policyNumber':
+        case 'name':
+        case 'identifier':
+        case 'address':
+        case 'phoneNumber':
+        case 'email':
+        case 'segment':
+        case 'liquidPrize':
+        case 'IOF':
+        case 'commissionPercentage':
+        case 'TotalPrize':
+        case 'paymentType':
+        case 'installment':
+          if (policy[key] === '') {
+            return {hasError: true, key};
+          }
+          break;
+
+        case 'dealDate':
+          if (policy[key].length !== 10) {
+            return {hasError: true, key};
+          }
+          break;
+
+        case 'identifier':
+          if (policy[key].length === 14 || policy[key].length === 18) {
+            return {hasError: true, key};
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+    return {hasError: false, key: ''};
   }
 
   return (
@@ -200,9 +235,16 @@ const PolicyFoinputPolicy = ({isModalOpen, setIsModalOpen}: Props) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              validatePolicy(inputPolicy);
-              setInputPolicy(initialPolicyState);
-              setIsModalOpen(false);
+              const result = validatePolicy(inputPolicy);
+              if (!result.hasError) {
+                const formattedPolicy = inputPolicy;
+                formattedPolicy.dealDate = createDateByString(
+                  formattedPolicy.dealDate,
+                );
+                updatePolicies(formattedPolicy);
+                setInputPolicy(initialPolicyState);
+                setIsModalOpen(false);
+              }
             }}
             className="bg-red-500 px-8 py-4 rounded-2xl flex items-center justify-center">
             <Text className="color-white">Salvar</Text>
