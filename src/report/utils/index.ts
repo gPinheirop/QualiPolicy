@@ -37,25 +37,25 @@ export function formatInputIdentifier(input: string) {
     if (value.length > 3) {
       value = `${value.slice(0, 3)}.${value.slice(3)}`;
     }
-    if (value.length > 6) {
-      value = `${value.slice(0, 6)}.${value.slice(6)}`;
+    if (value.length > 7) {
+      value = `${value.slice(0, 7)}.${value.slice(7)}`;
     }
-    if (value.length > 9) {
-      value = `${value.slice(0, 9)}-${value.slice(9)}`;
+    if (value.length > 11) {
+      value = `${value.slice(0, 11)}-${value.slice(11)}`;
     }
     value = value.slice(0, 14);
   } else {
     if (value.length > 2) {
       value = `${value.slice(0, 2)}.${value.slice(2)}`;
     }
-    if (value.length > 5) {
-      value = `${value.slice(0, 5)}.${value.slice(5)}`;
+    if (value.length > 6) {
+      value = `${value.slice(0, 6)}.${value.slice(6)}`;
     }
-    if (value.length > 8) {
-      value = `${value.slice(0, 8)}/${value.slice(8)}`;
+    if (value.length > 10) {
+      value = `${value.slice(0, 10)}/${value.slice(10)}`;
     }
-    if (value.length > 12) {
-      value = `${value.slice(0, 12)}-${value.slice(12)}`;
+    if (value.length > 15) {
+      value = `${value.slice(0, 15)}-${value.slice(15)}`;
     }
     value = value.slice(0, 18);
   }
