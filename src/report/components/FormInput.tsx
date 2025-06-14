@@ -10,6 +10,7 @@ interface Props {
   policy: Policy & Vehicle;
   inputKey: keyof Policy | keyof Vehicle;
   isDisable?: boolean;
+  formatter?: (...value: any[]) => void;
 }
 
 const FormInput = ({
@@ -19,6 +20,7 @@ const FormInput = ({
   inputKey,
   updateFunction,
   isDisable = false,
+  formatter,
 }: Props) => {
   return (
     <View
@@ -37,12 +39,12 @@ const FormInput = ({
           }`}
           value={String(policy[inputKey])}
           readOnly={isDisable}
-          onChangeText={value =>
+          onChangeText={value => {
             updateFunction(oldPolicy => ({
               ...oldPolicy,
-              [inputKey]: value,
-            }))
-          }
+              [inputKey]: formatter ? formatter(value) : value,
+            }));
+          }}
         />
       ) : (
         <Switch

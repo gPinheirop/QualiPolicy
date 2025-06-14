@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import {Policy} from '../types/policy';
-import {formatDate} from '../utils';
+import {formatDisplayDate} from '../utils';
 
 interface Props {
   index: number;
@@ -14,14 +14,16 @@ const ListItem = ({index, policy}: Props) => {
         index % 2 === 0 ? 'bg-white' : 'bg-gray-200'
       }`}>
       <Text className="w-[9%] text-black text-center">
-        {formatDate(policy.dealDate)}
+        {formatDisplayDate(policy.dealDate)}
       </Text>
       <Text className="w-[9%] text-black text-center">{policy.identifier}</Text>
       <Text className="w-[9%] text-black text-center">{policy.name}</Text>
       <Text className="w-[9%] text-black text-center">
         {policy.phoneNumber}
       </Text>
-      <Text className="w-[9%] text-black text-center">{policy.companyName}</Text>
+      <Text className="w-[9%] text-black text-center">
+        {policy.companyName}
+      </Text>
       <Text className="w-[9%] text-black text-center">{policy.segment}</Text>
       <Text className="w-[9%] text-black text-center">
         {policy.liquidPrize}
